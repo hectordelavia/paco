@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de Apresentação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #8b7355 0%, #a89076 50%, #d4b996 100%);
+            padding: 2rem;
+        }
+
+        /* Contêiner do cartão */
+        .card-container {
+            perspective: 1500px;
+        }
+
+        .card {
+            width: 420px;
+            height: 260px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: rotateY(180deg);
+        }
+
+        /* Frente e Verso */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.3),
+                inset 0 0 40px rgba(139,115,85,0.1);
+            background: linear-gradient(145deg, #f8f4e9 0%, #f0e8d8 100%);
+            border: 1px solid #d9c7a9;
+        }
+
+        .card-front {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Textura de papel */
+        .card-front::before, .card-back::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        /* Frente */
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            color: #6b4226;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .linha {
+            width: 60px;
+            height: 2px;
+            background: #9a7b4f;
+            margin: 0.5rem 0 1rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #2c1810;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cargo {
+            font-size: 1rem;
+            color: #7a5c3d;
+            font-style: italic;
+        }
+
+        .frase {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #8b7355;
+            font-style: italic;
+        }
+
+        /* Verso */
+        .card-back h2 {
+            font-size: 1.1rem;
+            color: #6b4226;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #d1b994;
+            padding-bottom: 0.5rem;
+        }
+
+        .info {
+            list-style: none;
+        }
+
+        .info li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e0d2b8;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #3c2a1a;
+            font-size: 0.95rem;
+        }
+
+        .info li:last-child {
+            border-bottom: none;
+        }
+
+        .info a {
+            color: #6b4226;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .info a:hover {
+            color: #a67c52;
+            text-decoration: underline;
+        }
+
+        .icone {
+            font-size: 1rem;
+        }
+
+        .rodape {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 2rem;
+            font-size: 0.75rem;
+            color: #9a8b6f;
+            font-style: italic;
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                max-width: 380px;
+                height: 240px;
+            }
+            .card-front, .card-back {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <!-- FRENTE DO CARTÃO -->
+            <div class="card-front">
+                <p class="logo">Apresentação</p>
+                <div class="linha"></div>
+                <h1>Seu Nome Completo</h1>
+                <p class="cargo">Profissão / Área de Atuação</p>
+                <p class="frase">"Qualidade e dedicação em cada detalhe."</p>
+            </div>
+
+            <!-- VERSO DO CARTÃO -->
+            <div class="card-back">
+                <h2>Contato</h2>
+                <ul class="info">
+                    <li><span class="icone">📧</span> <a href="mailto:seuemail@pedrozanin@gmail.com">seuemail@gmail.com</a></li>
+                    <li><span class="icone">📱</span> (49) 9 9999-9999</li>
+                    <li><span class="icone">📍</span> Santa Catarina — Brasil</li>
+                    <li><span class="icone">🔗</span> <a href="https://github.com/seuusuario" target="_blank">github.com/seuusuario</a></li>
+                </ul>
+                <p class="rodape">© 2026 — Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
